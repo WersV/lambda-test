@@ -26,9 +26,10 @@ public class HomePage {
     @FindBy(xpath = "//span[contains(text(), 'Register')]")
     private WebElement registerBtn;
 
-    public void goToRegisterPage() {
+    public RegisterPage goToRegisterPage() {
         Actions actions = new Actions(driver);
         myAccBtn.stream().filter(el -> el.isDisplayed()).findFirst().ifPresent(el -> actions.moveToElement(el).perform());
         registerBtn.click();
+        return new RegisterPage(driver);
     }
 }
