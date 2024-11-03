@@ -20,7 +20,7 @@ public class HomePage {
     @FindBy(xpath = "//a[@href='https://ecommerce-playground.lambdatest.io/index.php?route=account/account']")
     private List<WebElement> myAccBtn;
 
-    @FindBy(xpath = "//a[@href='https://ecommerce-playground.lambdatest.io/index.php?route=account/login']")
+    @FindBy(xpath = "//span[contains(text(), 'Login')]")
     private WebElement loginLiBtn;
 
     @FindBy(xpath = "//span[contains(text(), 'Register')]")
@@ -31,5 +31,12 @@ public class HomePage {
         myAccBtn.stream().filter(el -> el.isDisplayed()).findFirst().ifPresent(el -> actions.moveToElement(el).perform());
         registerBtn.click();
         return new RegisterPage(driver);
+    }
+
+    public LoginPage goToLoginPage() {
+        Actions actions = new Actions(driver);
+        myAccBtn.stream().filter(el -> el.isDisplayed()).findFirst().ifPresent(el -> actions.moveToElement(el).perform());
+        loginLiBtn.click();
+        return new LoginPage(driver);
     }
 }
